@@ -1,0 +1,1 @@
+aws ec2 describe-instances --query "Reservations[*].Instances[*].[PrivateIpAddress, Tags[?Key=='Name'].Value|[0]]" --output text | grep jenkisns_Server | awk '{print $1}'
