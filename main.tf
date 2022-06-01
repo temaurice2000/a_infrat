@@ -75,7 +75,7 @@ resource "aws_instance" "Jenkins-server" {
   /* cpu_core_count = "1"  */
   key_name = "Devops"
   tags = {
-    Name = "webserver"
+    Name = "html_server"
   }
   security_groups = [aws_security_group.public-SG.id]
   user_data       = <<EOF
@@ -87,8 +87,8 @@ resource "aws_instance" "Jenkins-server" {
       sudo add-apt-repository ppa:deadsnakes/ppa
       sudo apt-get update
       sudo apt-get install python3.8
-      sudo adduser ansible
-      sudo echo "ansible ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      sudo adduser ec2-user
+      sudo echo "ec2-user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       sudo sed -ie 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
       sudo service sshd reload
       EOF
