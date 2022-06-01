@@ -68,14 +68,14 @@ resource "aws_route_table_association" "my-pub-association" {
 }
 resource "aws_instance" "Jenkins-server" {
   subnet_id                   = aws_subnet.pub-sub.id
-  ami                         = "ami-0c4f7023847b90238"
+  ami                         = "ami-0b0af3577fe5e3532"
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   availability_zone           = "us-east-1b"
   /* cpu_core_count = "1"  */
   key_name = "Devops"
   tags = {
-    Name = "html_server"
+    Name = "htmlserver"
   }
   security_groups = [aws_security_group.public-SG.id]
   user_data       = <<EOF
@@ -87,7 +87,6 @@ resource "aws_instance" "Jenkins-server" {
       sudo add-apt-repository ppa:deadsnakes/ppa
       sudo apt-get update
       sudo apt-get install python3.8
-      sudo adduser ec2-user
       sudo echo "ec2-user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
       sudo sed -ie 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
       sudo service sshd reload
