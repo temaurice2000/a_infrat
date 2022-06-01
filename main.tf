@@ -87,6 +87,10 @@ resource "aws_instance" "Jenkins-server" {
       sudo add-apt-repository ppa:deadsnakes/ppa
       sudo apt-get update
       sudo apt-get install python3.8
+      sudo adduser ansible
+      sudo echo "ansible ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+      sudo sed -ie 's/PasswordAuthentication no/PasswordAuthentication yes/' /etc/ssh/sshd_config
+      sudo service sshd reload
       EOF
 }
 /* resource "aws_ebs_volume" "new-volume" {
