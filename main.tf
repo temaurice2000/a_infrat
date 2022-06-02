@@ -75,7 +75,7 @@ resource "aws_instance" "Jenkins-server" {
   /* cpu_core_count = "1"  */
   key_name = "Devops"
   tags = {
-    Name = "html_server2"
+    Name = "webserver"
   }
   security_groups = [aws_security_group.public-SG.id]
   user_data       = <<EOF
