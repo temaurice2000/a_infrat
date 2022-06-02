@@ -68,7 +68,7 @@ resource "aws_route_table_association" "my-pub-association" {
 }
 resource "aws_instance" "Jenkins-server" {
   subnet_id                   = aws_subnet.pub-sub.id
-  ami                         = "ami-0b0af3577fe5e3532"
+  ami                         = "ami-0c4f7023847b90238"
   instance_type               = "t2.micro"
   associate_public_ip_address = true
   availability_zone           = "us-east-1b"
